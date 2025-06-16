@@ -1,6 +1,7 @@
 // stores/useGamesStore.js
 import { defineStore } from "pinia";
 import { getGames, getPopularGames } from "@/services/gameServices";
+import { toast } from 'vue-sonner'
 
 export const useGamesStore = defineStore("games", {
   state: () => ({
@@ -25,6 +26,7 @@ export const useGamesStore = defineStore("games", {
           this.page++;
         }
       } catch (err) {
+        toast.error('Error al cargar los juegos.')
         this.error = err;
       } finally {
         this.loading = false;
@@ -35,6 +37,7 @@ export const useGamesStore = defineStore("games", {
         const data = await getPopularGames();
         this.popularGames = data.results;
       } catch (err) {
+        toast.error('Error al cargar juegos populares.')
         this.error = err;
       }
     },

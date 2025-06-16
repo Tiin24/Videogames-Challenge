@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { getGameDetail, getGameScreenshots } from "@/services/gameServices";
+import { toast } from 'vue-sonner'
 
 export const useDetailGameStore = defineStore("game", () => {
   const game = ref(null);
@@ -18,6 +19,7 @@ export const useDetailGameStore = defineStore("game", () => {
       screenshots.value = shots;
     } catch (err) {
       error.value = "Error al cargar el juego";
+      toast.error('Error al cargar el juego.')
       console.error(err);
     } finally {
       loading.value = false;
