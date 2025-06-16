@@ -12,10 +12,11 @@ import {
   FaApple,
   FaLinux,
   FaAndroid,
-  FaGlobe
+  FaGlobe,
+  SiPlaystationvita
 } from "oh-vue-icons/icons"
 
-addIcons(FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid,BiNintendoSwitch, FaGlobe)
+addIcons(SiPlaystationvita,FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid,BiNintendoSwitch, FaGlobe)
 
 
 const app = createApp(App);

@@ -1,5 +1,7 @@
 <script setup>
 import Sidebar from '@/components/Sidebar.vue'
+import { Toaster } from '@/components/ui/sonner'
+import 'vue-sonner/style.css'
 </script>
 
 <template>
@@ -11,4 +13,5 @@ import Sidebar from '@/components/Sidebar.vue'
       </main>
     </div>
   </div>
+  <Toaster position="top-center" rich-colors/>
 </template>

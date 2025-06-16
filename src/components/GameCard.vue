@@ -2,6 +2,8 @@
 import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
+import { Button } from './ui/button'
 
 const router = useRouter()
 
@@ -41,13 +43,15 @@ const toggleFavorite = () => {
     const newFavs = favs.filter(g => g.id !== props.game.id)
     saveFavorites(newFavs)
     isFavorite.value = false
+    toast.success('Juego eliminado de favoritos.')
   } else {
     if (favs.length >= 5) {
-      alert('Solo puedes tener un máximo de 5 juegos favoritos.')
+      toast.error('Solo puedes tener un máximo de 5 juegos favoritos.')
       return
     }
     // Agregar a favoritos
     favs.push(props.game)
+    toast.success('Agregado a favoritos')
     saveFavorites(favs)
     isFavorite.value = true
   }
@@ -65,8 +69,7 @@ watch(() => props.game, loadFavorites)
 </script>
 
 <template>
-  <Card
-    @click="goToDetails"
+  <Card @click="goToDetails"
     class="relative bg-red-800 text-white rounded-xl shadow-[8px_8px_0px_0px_black] overflow-hidden transform transition duration-300 hover:scale-105 hover:rotate-[-1.5deg] hover:shadow-[12px_12px_0px_0px_black] shine-container">
     <div class="absolute -top-3 -left-3 w-full h-full border-4 border-white rotate-[-1deg] z-0 pointer-events-none">
     </div>
@@ -91,12 +94,14 @@ watch(() => props.game, loadFavorites)
           <span class="ml-2 text-xs text-white drop-shadow-[1px_1px_0px_#000]">({{ props.game.rating }})</span>
         </div>
 
-        <button @click.stop.prevent="toggleFavorite" :class="[
-          'px-3 py-1 rounded uppercase font-bold text-sm transition',
-          isFavorite ? 'bg-yellow-400 text-black' : 'bg-gray-700 text-white hover:bg-gray-600'
+        <Button @click.stop.prevent="toggleFavorite" :class="[
+          'px-3 py-1 rounded uppercase font-bold text-sm transition-colors duration-200 ease-in-out',
+          isFavorite
+            ? 'bg-yellow-400 text-black hover:bg-yellow-500'
+            : 'bg-gray-700 text-white hover:bg-gray-600'
         ]">
           {{ isFavorite ? 'Quitar' : 'Favorito' }}
-        </button>
+        </Button>
       </div>
     </CardFooter>
   </Card>

@@ -49,6 +49,7 @@ const platformIcons = {
   'Linux': 'fa-linux',
   'Android': 'fa-android',
   'Web': 'fa-globe',
+  'PS Vita': 'si-playstationvita',
 }
 
 function getPlatformIcon(platformName) {
